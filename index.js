@@ -45,7 +45,11 @@ app.all("/", function (req, res) {
 		res.render("index", data)
 	})
 	.catch(error => {
-		res.render("index", {error: "Problem with getting data, try again."})
+		if (req.body.cityname.trim().length == 0) {
+			res.render("index", {error: "Please enter a valid city name."})
+		} else {
+			res.render("index", {error: "Problem with getting data, try again."})
+		}
 	})
 
 })
